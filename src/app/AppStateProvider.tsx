@@ -16,6 +16,7 @@ import {
   IS_DEVELOPMENT,
   IS_PRODUCTION,
   MATTE_PHOTOS,
+  MATTE_PHOTOS_DESKTOP,
   SHOW_ZOOM_CONTROLS,
 } from '@/app/config';
 import { ShareModalProps } from '@/share';
@@ -106,7 +107,7 @@ export default function AppStateProvider({
   const [areZoomControlsShown, setAreZoomControlsShown] =
     useState(SHOW_ZOOM_CONTROLS);
   const [arePhotosMatted, setArePhotosMatted] =
-    useState(MATTE_PHOTOS);
+    useState(MATTE_PHOTOS || (MATTE_PHOTOS_DESKTOP && false));
   const [shouldDebugImageFallbacks, setShouldDebugImageFallbacks] =
     useState(false);
   const [shouldShowBaselineGrid, setShouldShowBaselineGrid] =
@@ -128,6 +129,13 @@ export default function AppStateProvider({
     }, 1000);
     return () => clearTimeout(timeout);
   }, []);
+
+  // Update matte state when desktop-only matte is enabled and hover support changes
+  useEffect(() => {
+    if (MATTE_PHOTOS_DESKTOP && !MATTE_PHOTOS) {
+      setArePhotosMatted(supportsHover);
+    }
+  }, [supportsHover]);
 
   const { mutate } = useSWRConfig();
   const invalidateSwr = useCallback((key?: SWRKey, revalidate?: boolean) => {
