@@ -218,7 +218,7 @@ export default function PhotoLarge({
       // Always specify height to ensure fallback doesn't collapse
       arePhotosMatted && 'h-[90%]',
       arePhotosMatted && matteContentWidthForAspectRatio,
-      shouldFitPortraitPhotoOnDesktop && 'md:flex md:justify-center',
+      shouldFitPortraitPhotoOnDesktop && 'md:flex md:justify-start',
     )}>
       <ZoomControls
         ref={refZoomControls}
