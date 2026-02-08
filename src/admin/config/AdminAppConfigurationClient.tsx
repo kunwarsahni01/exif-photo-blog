@@ -121,6 +121,7 @@ export default function AdminAppConfigurationClient({
   hasDefaultTheme,
   defaultTheme,
   arePhotosMatted,
+  arePhotosMattedDesktop,
   arePhotoMatteColorsConfigured,
   matteColor,
   matteColorDark,
@@ -882,6 +883,18 @@ export default function AdminAppConfigurationClient({
             of each photo, and display a surrounding border:
             <div className="pt-1 flex flex-col gap-1">
               <EnvVar variable="NEXT_PUBLIC_MATTE_PHOTOS" />
+            </div>
+          </ChecklistRow>
+          <ChecklistRow
+            title="Photo matting (desktop only)"
+            status={arePhotosMattedDesktop}
+            optional
+          >
+            Set environment variable to {'"1"'} to enable photo matting
+            {' '}
+            only on desktop devices (devices with hover capability):
+            <div className="pt-1 flex flex-col gap-1">
+              <EnvVar variable="NEXT_PUBLIC_MATTE_PHOTOS_DESKTOP" />
             </div>
           </ChecklistRow>
           <ChecklistRow

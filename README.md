@@ -174,6 +174,7 @@ Create Upstash Redis store from storage tab of Vercel dashboard and link to your
 ### Design
 - `NEXT_PUBLIC_DEFAULT_THEME = light | dark` sets preferred initial theme (defaults to `system` when not configured)
 - `NEXT_PUBLIC_MATTE_PHOTOS = 1` constrains the size of each photo, and displays a surrounding border, potentially useful for photos with tall aspect ratios (colors can be customized via `NEXT_PUBLIC_MATTE_COLOR` + `NEXT_PUBLIC_MATTE_COLOR_DARK`)
+- `NEXT_PUBLIC_MATTE_PHOTOS_DESKTOP = 1` same as `NEXT_PUBLIC_MATTE_PHOTOS` but only enables the matte effect on desktop devices (devices with hover capability)
 
 ### Settings
 - `NEXT_PUBLIC_GEO_PRIVACY = 1` disables collection/display of location-based data (⚠️ re-compresses uploaded images in order to remove GPS information)

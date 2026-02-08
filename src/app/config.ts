@@ -358,6 +358,8 @@ export const DEFAULT_THEME =
       : 'system';
 export const MATTE_PHOTOS =
   process.env.NEXT_PUBLIC_MATTE_PHOTOS === '1';
+export const MATTE_PHOTOS_DESKTOP =
+  process.env.NEXT_PUBLIC_MATTE_PHOTOS_DESKTOP === '1';
 export const MATTE_COLOR =
   process.env.NEXT_PUBLIC_MATTE_COLOR;
 export const MATTE_COLOR_DARK =
@@ -503,6 +505,7 @@ export const APP_CONFIGURATION = {
   hasDefaultTheme: Boolean(process.env.NEXT_PUBLIC_DEFAULT_THEME),
   defaultTheme: DEFAULT_THEME,
   arePhotosMatted: MATTE_PHOTOS,
+  arePhotosMattedDesktop: MATTE_PHOTOS_DESKTOP,
   arePhotoMatteColorsConfigured:
     Boolean(MATTE_COLOR) ||
     Boolean(MATTE_COLOR_DARK),
