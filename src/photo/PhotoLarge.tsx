@@ -132,6 +132,7 @@ export default function PhotoLarge({
   const appText = useAppText();
 
   const showZoomControls = _showZoomControls && areZoomControlsShown;
+  const shouldApplyMatte = arePhotosMatted && photo.aspectRatio < 1;
   const selectZoomImageElement = useCallback(
     (container: HTMLElement | null) =>
       Array.from(container?.getElementsByTagName("img") ?? [])
@@ -199,10 +200,10 @@ export default function PhotoLarge({
     <div
       className={clsx(
         "relative",
-        arePhotosMatted && "flex items-center justify-center",
+        shouldApplyMatte && "flex items-center justify-center",
         // Always specify height to ensure fallback doesn't collapse
-        arePhotosMatted && "h-[95%]",
-        arePhotosMatted && matteContentWidthForAspectRatio,
+        shouldApplyMatte && "h-[95%]",
+        shouldApplyMatte && matteContentWidthForAspectRatio,
       )}
     >
       <ZoomControls
@@ -211,9 +212,9 @@ export default function PhotoLarge({
         {...{ isEnabled: showZoomControls, shouldZoomOnFKeydown }}
       >
         <ImageLarge
-          className={clsx(arePhotosMatted && "h-full")}
+          className={clsx(shouldApplyMatte && "h-full")}
           classNameImage={clsx(
-            arePhotosMatted && "object-contain w-full h-full",
+            shouldApplyMatte && "object-contain w-full h-full",
           )}
           alt={altTextForPhoto(photo)}
           src={photo.url}
@@ -265,10 +266,10 @@ export default function PhotoLarge({
   );
 
   const largePhotoContainerClassName = clsx(
-    arePhotosMatted && "flex items-center justify-center aspect-3/2",
+    shouldApplyMatte && "flex items-center justify-center aspect-3/2",
     // Matte theme colors defined in root layout
-    arePhotosMatted && (MATTE_COLOR ? "bg-(--matte-bg)" : "bg-gray-100"),
-    arePhotosMatted &&
+    shouldApplyMatte && (MATTE_COLOR ? "bg-(--matte-bg)" : "bg-gray-100"),
+    shouldApplyMatte &&
       (MATTE_COLOR_DARK
         ? "dark:bg-(--matte-bg-dark)"
         : // Only specify dark background when MATTE_COLOR is not configured
