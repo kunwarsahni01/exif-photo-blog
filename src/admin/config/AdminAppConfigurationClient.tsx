@@ -121,6 +121,7 @@ export default function AdminAppConfigurationClient({
   hasDefaultTheme,
   defaultTheme,
   arePhotosMatted,
+  fitVerticalPhotosOnDesktop,
   arePhotoMatteColorsConfigured,
   matteColor,
   matteColorDark,
@@ -882,6 +883,19 @@ export default function AdminAppConfigurationClient({
             of each photo, and display a surrounding border:
             <div className="pt-1 flex flex-col gap-1">
               <EnvVar variable="NEXT_PUBLIC_MATTE_PHOTOS" />
+            </div>
+          </ChecklistRow>
+          <ChecklistRow
+            title="Fit vertical photos on desktop"
+            status={fitVerticalPhotosOnDesktop}
+            optional
+          >
+            Set environment variable to {'"1"'} to scale portrait photos
+            on desktop so they fully fit in the viewport height
+            {' '}
+            (without enabling matte mode):
+            <div className="pt-1 flex flex-col gap-1">
+              <EnvVar variable="NEXT_PUBLIC_FIT_VERTICAL_PHOTOS_ON_DESKTOP" />
             </div>
           </ChecklistRow>
           <ChecklistRow

@@ -7,6 +7,7 @@ import {
   IS_DEVELOPMENT,
   APP_CONFIGURATION,
   MATTE_PHOTOS,
+  FIT_VERTICAL_PHOTOS_ON_DESKTOP,
   IS_META_DESCRIPTION_CONFIGURED,
   IS_META_TITLE_CONFIGURED,
   HAS_STATIC_OPTIMIZATION,
@@ -144,7 +145,11 @@ export const getAllInsights = ({
   noAi: !AI_CONTENT_GENERATION_ENABLED,
   noConfiguredMetaTitle: !IS_META_TITLE_CONFIGURED,
   noConfiguredMetaDescription: !IS_META_DESCRIPTION_CONFIGURED,
-  photoMatting: photosCountPortrait > 0 && !MATTE_PHOTOS,
+  photoMatting: (
+    photosCountPortrait > 0 &&
+    !MATTE_PHOTOS &&
+    !FIT_VERTICAL_PHOTOS_ON_DESKTOP
+  ),
   gridFirst: (
     photosCount >= BASIC_PHOTO_INSTALLATION_COUNT &&
     !GRID_HOMEPAGE_ENABLED

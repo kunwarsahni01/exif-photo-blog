@@ -476,9 +476,17 @@ export default function AdminAppInsightsClient({
                 size={17}
                 className="rotate-90 translate-x-[-1px]"
               />}
-              content="Vertical photos may benefit from matting"
+              content="Vertical photos may benefit from scaling or matting"
               expandContent={<>
-                Enable photo matting to make
+                Fit portrait photos to desktop viewport height with
+                {' '}
+                <EnvVar
+                  variable="NEXT_PUBLIC_FIT_VERTICAL_PHOTOS_ON_DESKTOP"
+                  value="1"
+                  trailingContent=","
+                />
+                {' '}
+                or enable photo matting to make
                 {' '}
                 portrait and landscape photos appear more consistent
                 {' '}
