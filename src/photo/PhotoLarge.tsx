@@ -31,6 +31,7 @@ import {
   SHOW_TAKEN_AT_TIME,
   MATTE_COLOR,
   MATTE_COLOR_DARK,
+  FIT_VERTICAL_PHOTOS_ON_DESKTOP,
 } from '@/app/config';
 import AdminPhotoMenu from '@/admin/AdminPhotoMenu';
 import { RevalidatePhoto } from './InfinitePhotoScroll';
@@ -196,6 +197,11 @@ export default function PhotoLarge({
       prefetch={prefetch}
     />;
 
+  const shouldFitPortraitPhotoOnDesktop =
+    FIT_VERTICAL_PHOTOS_ON_DESKTOP &&
+    !arePhotosMatted &&
+    photo.aspectRatio < 1;
+
   // Restrict width for landscape photos
   // (portrait photos are always height restricted)
   const matteContentWidthForAspectRatio =
@@ -212,6 +218,7 @@ export default function PhotoLarge({
       // Always specify height to ensure fallback doesn't collapse
       arePhotosMatted && 'h-[90%]',
       arePhotosMatted && matteContentWidthForAspectRatio,
+      shouldFitPortraitPhotoOnDesktop && 'md:flex md:justify-center',
     )}>
       <ZoomControls
         ref={refZoomControls}
@@ -219,9 +226,15 @@ export default function PhotoLarge({
         {...{ isEnabled: showZoomControls, shouldZoomOnFKeydown }}
       >
         <ImageLarge
-          className={clsx(arePhotosMatted && 'h-full')}
+          className={clsx(
+            arePhotosMatted && 'h-full',
+            shouldFitPortraitPhotoOnDesktop && 'md:max-h-[calc(100dvh-12rem)]',
+          )}
           classNameImage={clsx(arePhotosMatted &&
-            'object-contain w-full h-full')}
+            'object-contain w-full h-full',
+          shouldFitPortraitPhotoOnDesktop &&
+            'md:object-contain md:w-auto md:max-w-full md:h-auto ' +
+              'md:max-h-[calc(100dvh-12rem)]')}
           alt={altTextForPhoto(photo)}
           src={photo.url}
           aspectRatio={photo.aspectRatio}

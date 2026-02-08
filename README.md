@@ -174,6 +174,7 @@ Create Upstash Redis store from storage tab of Vercel dashboard and link to your
 ### Design
 - `NEXT_PUBLIC_DEFAULT_THEME = light | dark` sets preferred initial theme (defaults to `system` when not configured)
 - `NEXT_PUBLIC_MATTE_PHOTOS = 1` constrains the size of each photo, and displays a surrounding border, potentially useful for photos with tall aspect ratios (colors can be customized via `NEXT_PUBLIC_MATTE_COLOR` + `NEXT_PUBLIC_MATTE_COLOR_DARK`)
+- `NEXT_PUBLIC_FIT_VERTICAL_PHOTOS_ON_DESKTOP = 1` scales portrait photos on desktop so they fit within viewport height without enabling matte mode
 
 ### Settings
 - `NEXT_PUBLIC_GEO_PRIVACY = 1` disables collection/display of location-based data (⚠️ re-compresses uploaded images in order to remove GPS information)
@@ -433,7 +434,7 @@ Thank you ❤️ translators: [@sconetto](https://github.com/sconetto) (`pt-br`,
 > Many services such as iMessage, Slack, and X, require near-instant responses when unfurling link-based content. In order to guarantee sufficient responsiveness, consider rendering pages and image assets ahead of time by enabling static optimization by setting `NEXT_PUBLIC_STATICALLY_OPTIMIZE_PHOTOS = 1` and `NEXT_PUBLIC_STATICALLY_OPTIMIZE_PHOTO_OG_IMAGES = 1`. Keep in mind that this will increase platform usage.
 
 #### Why do vertical images take up so much space?
-> By default, all photos are shown full-width, regardless of orientation. Enable matting to showcase horizontal and vertical photos at similar scales by setting `NEXT_PUBLIC_MATTE_PHOTOS = 1`.
+> By default, all photos are shown full-width, regardless of orientation. If you prefer portrait photos to fully fit on desktop without a matte border, set `NEXT_PUBLIC_FIT_VERTICAL_PHOTOS_ON_DESKTOP = 1`. If you want a bordered matte presentation instead, set `NEXT_PUBLIC_MATTE_PHOTOS = 1`.
 
 #### Why are my grid thumbnails so small?
 > Thumbnail grid density (seen on `/grid`, tag overviews, and other photo sets) is dependent on aspect ratio configuration (ratios of 1 or less have more photos per row). This can be overridden by setting `NEXT_PUBLIC_SHOW_LARGE_THUMBNAILS = 1`.

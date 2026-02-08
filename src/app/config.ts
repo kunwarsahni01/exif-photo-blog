@@ -358,6 +358,10 @@ export const DEFAULT_THEME =
       : 'system';
 export const MATTE_PHOTOS =
   process.env.NEXT_PUBLIC_MATTE_PHOTOS === '1';
+export const FIT_VERTICAL_PHOTOS_ON_DESKTOP =
+  process.env.NEXT_PUBLIC_FIT_VERTICAL_PHOTOS_ON_DESKTOP === '1' ||
+  // Legacy / compatibility fallback
+  process.env.NEXT_PUBLIC_MATTE_PHOTOS_DESKTOP === '1';
 export const MATTE_COLOR =
   process.env.NEXT_PUBLIC_MATTE_COLOR;
 export const MATTE_COLOR_DARK =
@@ -503,6 +507,7 @@ export const APP_CONFIGURATION = {
   hasDefaultTheme: Boolean(process.env.NEXT_PUBLIC_DEFAULT_THEME),
   defaultTheme: DEFAULT_THEME,
   arePhotosMatted: MATTE_PHOTOS,
+  fitVerticalPhotosOnDesktop: FIT_VERTICAL_PHOTOS_ON_DESKTOP,
   arePhotoMatteColorsConfigured:
     Boolean(MATTE_COLOR) ||
     Boolean(MATTE_COLOR_DARK),
@@ -562,6 +567,9 @@ const ALL_DEPRECATED_ENV_VARS = [{
 }, {
   old: 'NEXT_PUBLIC_HIDE_SOCIAL',
   replacement: 'NEXT_PUBLIC_SOCIAL_NETWORKS',
+}, {
+  old: 'NEXT_PUBLIC_MATTE_PHOTOS_DESKTOP',
+  replacement: 'NEXT_PUBLIC_FIT_VERTICAL_PHOTOS_ON_DESKTOP',
 }];
 
 export const USED_DEPRECATED_ENV_VARS = ALL_DEPRECATED_ENV_VARS
